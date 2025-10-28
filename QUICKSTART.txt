@@ -1,0 +1,199 @@
+╔══════════════════════════════════════════════════════════════════╗
+║         ETL Job Scheduler & Orchestrator - Quick Start          ║
+╚══════════════════════════════════════════════════════════════════╝
+
+GETTING STARTED
+═══════════════
+
+1. LAUNCH THE APPLICATION
+   
+   python3 run_scheduler.py
+   
+   OR
+   
+   python3 etl_scheduler.py
+
+
+2. CREATE YOUR FIRST JOB
+
+   a) Click the "➕ New" button
+   
+   b) Fill in Basic Info:
+      - Name: "My First Job"
+      - Type: Python (or Shell/SQL)
+      - Command: python3 -c "print('Hello World')"
+   
+   c) Configure Schedule:
+      - Select "Manual" for now
+      - Later: Use "Interval" or "Cron" for automation
+   
+   d) Click "Save"
+
+
+3. RUN THE JOB
+
+   a) Select your job from the list
+   b) Click "▶️ Run" button
+   c) Watch the output in the "Output Log" tab
+   d) Check execution history in "Recent Executions"
+
+
+4. IMPORT EXAMPLE JOBS (Optional)
+
+   a) Go to File → Import Jobs
+   b) Select "example_jobs.json"
+   c) Review the imported example jobs
+   d) Enable and customize them as needed
+
+
+COMMON TASKS
+════════════
+
+CREATE A SCHEDULED JOB
+─────────────────────
+1. New Job → Schedule Tab
+2. Select "Cron" or "Interval"
+3. For daily at 9 AM: Cron expression "0 9 * * *"
+4. For every hour: Interval "60" minutes
+5. Enable the job (checkbox on Basic Info tab)
+
+
+ADD JOB DEPENDENCIES
+────────────────────
+1. Edit Job → Dependencies Tab
+2. Select jobs that must complete first
+3. Save
+4. View workflow: View → Workflow Designer
+
+
+CONFIGURE NOTIFICATIONS
+───────────────────────
+1. File → Settings → Email Notifications
+2. Enter SMTP details (Gmail: smtp.gmail.com:587)
+3. Test the connection
+4. In each job: Notifications Tab → Enter email
+
+
+VIEW EXECUTION LOGS
+───────────────────
+1. Select a job
+2. Click "Recent Executions" tab
+3. Double-click any execution to see full log
+4. Or: View → Execution Logs for all jobs
+
+
+CRON EXPRESSION QUICK REFERENCE
+════════════════════════════════
+
+Format: minute hour day month weekday
+
+Examples:
+  0 * * * *         - Every hour
+  */15 * * * *      - Every 15 minutes
+  0 9 * * *         - Daily at 9:00 AM
+  0 9 * * 1-5       - Weekdays at 9:00 AM
+  0 0 * * 0         - Weekly on Sunday
+  0 2 1 * *         - Monthly on 1st at 2 AM
+
+
+JOB TYPES EXPLAINED
+═══════════════════
+
+PYTHON JOBS
+──────────
+Command examples:
+  - python3 script.py
+  - python3 -c "import sys; print('hello')"
+  - python3 /path/to/etl_script.py arg1 arg2
+
+Environment variables:
+  {"PYTHONPATH": "/custom/path", "API_KEY": "secret"}
+
+
+SHELL JOBS
+─────────
+Command examples:
+  - ./backup.sh
+  - tar -czf backup.tar.gz /data
+  - rsync -av source/ dest/
+  - echo "test" > output.txt
+
+Works with any shell command or script.
+
+
+SQL JOBS  
+────────
+Command examples:
+  - psql -U user -d db -f query.sql
+  - mysql -u user -p password db < query.sql
+  - sqlite3 db.sqlite < query.sql
+
+Requires database CLI tools installed.
+
+
+TIPS & BEST PRACTICES
+══════════════════════
+
+✓ Start simple: Create manual jobs first, test them, then add scheduling
+
+✓ Use descriptive names: "Daily Customer ETL" not "Job1"
+
+✓ Add descriptions: Future you will thank present you
+
+✓ Test commands manually: Before adding to scheduler, test in terminal
+
+✓ Use working directories: Set proper paths for script execution
+
+✓ Configure retries: For jobs that might have transient failures
+
+✓ Set timeouts: Prevent hung jobs from running forever
+
+✓ Enable notifications: Stay informed about job failures
+
+✓ Check dependencies: Ensure jobs run in correct order
+
+✓ Export regularly: Backup your job configurations
+
+
+TROUBLESHOOTING
+═══════════════
+
+Job won't run?
+→ Check if it's enabled (✅ icon in list)
+→ Verify schedule configuration
+→ Check dependencies are met
+→ Review Recent Executions for errors
+
+Job fails?
+→ Test command manually in terminal
+→ Check working directory is correct
+→ Verify file permissions
+→ Review error output in execution log
+
+Can't see output?
+→ Jobs must write to stdout/stderr
+→ Check Recent Executions tab
+→ Double-click execution to see full log
+
+
+KEYBOARD SHORTCUTS
+═══════════════════
+
+F5          - Refresh job list
+Double-Click - Edit selected job
+
+
+NEED HELP?
+══════════
+
+1. Read the full README_ETL.md documentation
+2. Check execution logs for error messages
+3. Test your commands outside the scheduler first
+4. Review example jobs for templates
+
+
+═══════════════════════════════════════════════════════════════════
+
+Happy Scheduling! 🚀
+
+═══════════════════════════════════════════════════════════════════
